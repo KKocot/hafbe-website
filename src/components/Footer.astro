@@ -1,0 +1,111 @@
+---
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="tmux-footer" role="contentinfo">
+  <div class="tmux-footer__bar">
+    <span class="tmux-footer__segment font-bold text-accent"
+      >[hafbe]</span
+    ><span class="tmux-footer__sep" aria-hidden="true">│</span><span
+      class="tmux-footer__segment"
+      >&copy; {currentYear}</span
+    ><span class="tmux-footer__sep" aria-hidden="true">│</span><a
+      href="https://gitlab.syncad.com/hive/haf_block_explorer/-/blob/develop/LICENSE"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="tmux-footer__link"
+      aria-label="MIT License -- opens in new tab"
+      >MIT License</a
+    ><span class="tmux-footer__sep" aria-hidden="true">│</span><a
+      href="https://gitlab.syncad.com/hive/haf_block_explorer"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="tmux-footer__link"
+      aria-label="GitLab repository -- opens in new tab"
+      >GitLab</a
+    ><span class="tmux-footer__sep" aria-hidden="true">│</span><a
+      href="https://api.hive.blog/hafbe-api/"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="tmux-footer__link"
+      aria-label="API Documentation -- opens in new tab"
+      >API Docs</a
+    ><span class="tmux-footer__sep" aria-hidden="true">│</span><a
+      href="https://hive.blog"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="tmux-footer__link"
+      aria-label="Hive blockchain -- opens in new tab"
+      >built for <span class="font-semibold text-accent">hive</span></a
+    ><span class="tmux-footer__sep" aria-hidden="true">│</span><span
+      class="tmux-footer__dot"
+      aria-label="Status: online">●</span
+    >
+  </div>
+</footer>
+
+<style>
+  .tmux-footer {
+    background-color: var(--color-bg-surface);
+    border-top: 1px solid var(--color-border-subtle);
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+      "Liberation Mono", monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+    color: var(--color-text-secondary);
+    line-height: 1;
+  }
+
+  .tmux-footer__bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 0.5rem 1rem;
+    min-height: 2rem;
+  }
+
+  .tmux-footer__segment {
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+  }
+
+  .tmux-footer__sep {
+    color: var(--color-text-tertiary);
+    padding-inline: 0.5rem;
+    user-select: none;
+  }
+
+  .tmux-footer__link {
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color 0.15s ease-out;
+  }
+
+  .tmux-footer__link:hover,
+  .tmux-footer__link:focus-visible {
+    color: var(--color-accent);
+    text-shadow: 0 0 8px color-mix(in srgb, var(--color-accent) 50%, transparent);
+  }
+
+  .tmux-footer__link:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  .tmux-footer__dot {
+    color: var(--color-accent);
+    font-size: 0.625rem;
+    line-height: 1;
+  }
+
+  @media (max-width: 40rem) {
+    .tmux-footer__bar {
+      padding: 0.5rem 0.75rem;
+      font-size: 0.625rem;
+    }
+  }
+</style>

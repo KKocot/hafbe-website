@@ -1,6 +1,7 @@
 ---
 import "../styles/global.css";
 import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
 
 interface Props {
   title?: string;
@@ -42,32 +43,7 @@ const {
       <slot />
     </main>
 
-    <!-- Footer -->
-    <footer class="border-t border-border-subtle">
-      <div class="mx-auto max-w-[75rem] px-6 py-12 flex flex-col sm:flex-row items-center justify-between gap-4">
-        <p class="text-sm text-text-tertiary">&copy; {new Date().getFullYear()} HAF Block Explorer &middot; MIT License</p>
-        <div class="flex items-center gap-6">
-          <a
-            href="https://gitlab.syncad.com/hive/haf_block_explorer"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="text-sm text-text-tertiary hover:text-text-secondary transition-colors"
-          >GitLab</a>
-          <a
-            href="https://api.hive.blog/hafbe-api/"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="text-sm text-text-tertiary hover:text-text-secondary transition-colors"
-          >API</a>
-          <a
-            href="https://explore.openhive.network/"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="text-sm text-text-tertiary hover:text-text-secondary transition-colors"
-          >Explorer</a>
-        </div>
-      </div>
-    </footer>
+    <Footer />
 
   </body>
 </html>
