@@ -24,24 +24,6 @@ import ArchitecturePipeline from "../components/ArchitecturePipeline.astro";
         </p>
       </div>
 
-      <!-- Metrics -->
-      <div class="mt-12 grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-2xl">
-        <div class="rounded-xl border border-border-subtle bg-bg-surface px-6 py-5" data-animate style="--stagger: 1">
-          <p class="text-2xl font-bold text-accent">18</p>
-          <p class="mt-1 text-sm text-text-secondary">Endpoints</p>
-        </div>
-        <div class="rounded-xl border border-border-subtle bg-bg-surface px-6 py-5" data-animate style="--stagger: 2">
-          <p class="text-2xl font-bold text-accent">3</p>
-          <p class="mt-1 text-sm text-text-secondary">Modules</p>
-        </div>
-        <div class="rounded-xl border border-border-subtle bg-bg-surface px-6 py-5" data-animate style="--stagger: 3">
-          <svg class="w-5 h-5 text-accent mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
-          </svg>
-          <p class="text-sm text-text-secondary">Real-time Sync</p>
-        </div>
-      </div>
-
       <!-- Buttons -->
       <div class="mt-10 flex flex-wrap gap-4">
         <a
@@ -66,6 +48,33 @@ import ArchitecturePipeline from "../components/ArchitecturePipeline.astro";
         </span>
         <span class="text-sm text-text-secondary">Latest Block:</span>
         <span id="block-counter" class="text-sm font-mono font-medium text-text-primary">#91,000,000</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section id="stats" class="section-fullscreen py-12 border-t border-border-subtle" aria-labelledby="stats-heading">
+    <div class="mx-auto max-w-[75rem] px-6">
+      <div class="max-w-2xl" data-animate>
+        <h2 id="stats-heading" class="text-3xl md:text-4xl font-bold text-text-primary tracking-[-0.02em] leading-[1.15]">API at a Glance</h2>
+        <p class="mt-4 text-text-secondary leading-relaxed">Key numbers behind the HAF Block Explorer API.</p>
+      </div>
+
+      <div class="mt-14 grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div class="rounded-2xl border border-border-subtle bg-bg-surface p-7" data-animate style="--stagger: 1">
+          <p class="text-2xl font-bold text-accent">18</p>
+          <p class="mt-2 text-sm text-text-secondary leading-relaxed">Endpoints</p>
+        </div>
+        <div class="rounded-2xl border border-border-subtle bg-bg-surface p-7" data-animate style="--stagger: 2">
+          <p class="text-2xl font-bold text-accent">3</p>
+          <p class="mt-2 text-sm text-text-secondary leading-relaxed">Modules</p>
+        </div>
+        <div class="rounded-2xl border border-border-subtle bg-bg-surface p-7" data-animate style="--stagger: 3">
+          <svg class="w-5 h-5 text-accent mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+          </svg>
+          <p class="mt-2 text-sm text-text-secondary leading-relaxed">Real-time Sync</p>
+        </div>
       </div>
     </div>
   </section>
