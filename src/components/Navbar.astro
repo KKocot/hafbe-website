@@ -4,10 +4,12 @@ const navLinks = [
   { href: '#api-preview', section: 'api-preview', label: 'API' },
   { href: '#whats-inside', section: 'whats-inside', label: 'Tech Stack' },
 ];
+
+const sectionIds = ['hero', ...navLinks.map(l => l.section)];
 ---
 
 <header class="fixed top-0 left-0 right-0 z-50 bg-bg-primary/80 backdrop-blur-md border-b border-border-subtle">
-  <nav class="mx-auto max-w-[75rem] flex items-center justify-between px-6 h-16" aria-label="Main navigation">
+  <nav class="mx-auto max-w-[75rem] flex items-center justify-between px-6 h-16" aria-label="Main navigation" data-sections={JSON.stringify(sectionIds)}>
     <a href="/" class="text-lg font-bold tracking-tight text-text-primary">HAFBE</a>
 
     <!-- Desktop nav -->
@@ -58,11 +60,57 @@ const navLinks = [
     </div>
   </div>
   <script>
+    const nav = document.querySelector('nav[data-sections]')!;
+    const sectionIds: string[] = JSON.parse(nav.dataset.sections!);
+    const ACTIVE_CLASS = 'nav-active';
+    const navLinks = document.querySelectorAll<HTMLAnchorElement>('a.nav-link[data-section]');
+
+    // Close mobile menu on link click
     document.querySelectorAll('.mobile-nav a').forEach(link => {
       link.addEventListener('click', () => {
         const toggle = document.getElementById('mobile-menu-toggle') as HTMLInputElement | null;
         if (toggle) toggle.checked = false;
       });
     });
+
+    // Scroll spy
+    let currentActive: string | null = null;
+
+    function setActive(sectionId: string | null) {
+      if (sectionId === currentActive) return;
+      currentActive = sectionId;
+      navLinks.forEach(link => {
+        link.classList.toggle(ACTIVE_CLASS, link.dataset.section === sectionId);
+      });
+    }
+
+    const visibleSections = new Map<string, IntersectionObserverEntry>();
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            visibleSections.set(entry.target.id, entry);
+          } else {
+            visibleSections.delete(entry.target.id);
+          }
+        }
+
+        if (visibleSections.size === 0) { setActive(null); return; }
+
+        let topSection: string | null = null;
+        for (const id of sectionIds) {
+          if (visibleSections.has(id)) { topSection = id; break; }
+        }
+
+        setActive(topSection === 'hero' ? null : topSection);
+      },
+      { rootMargin: '-64px 0px -35% 0px', threshold: 0 }
+    );
+
+    for (const id of sectionIds) {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    }
   </script>
 </header>

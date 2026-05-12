@@ -102,6 +102,24 @@
   }
 }
 
+/* Scroll spy active nav link */
+.nav-link {
+  text-decoration: underline transparent;
+  text-underline-offset: 6px;
+  text-decoration-thickness: 2px;
+  transition: color 0.2s, text-decoration-color 0.2s;
+}
+
+.nav-link.nav-active {
+  color: var(--color-accent);
+  text-decoration-color: var(--color-accent);
+}
+
+/* Offset anchor scroll for fixed header (h-16 = 4rem) */
+section[id] {
+  scroll-margin-top: 4rem;
+}
+
 /* JSON syntax highlight tokens */
 .tk { color: var(--color-accent); }
 .ts { color: var(--color-text-secondary); }
