@@ -9,7 +9,7 @@ import WhatsInside from "../components/WhatsInside.astro";
 <Layout>
 
   <!-- Hero -->
-  <section class="section-fullscreen relative overflow-hidden py-12" data-animate aria-labelledby="hero-heading">
+  <section id="hero" class="section-fullscreen relative overflow-hidden py-12" data-animate aria-labelledby="hero-heading">
     <!-- Animated background -->
     <div class="hero-bg absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
       <div class="hero-grid absolute inset-0"></div>
@@ -35,11 +35,11 @@ import WhatsInside from "../components/WhatsInside.astro";
           class="inline-flex items-center gap-2 rounded-lg bg-accent px-6 py-3 text-sm font-medium text-bg-primary hover:bg-accent/90 transition-colors"
         >Explore API</a>
         <a
-          href="https://gitlab.syncad.com/hive/haf_block_explorer"
+          href="https://api.hive.blog/hafbe-api/"
           target="_blank"
           rel="noopener noreferrer"
           class="inline-flex items-center gap-2 rounded-lg border border-border-subtle px-6 py-3 text-sm font-medium text-text-primary hover:border-text-tertiary transition-colors"
-        >View on GitLab</a>
+        >API Docs</a>
       </div>
 
       <!-- Block counter -->
