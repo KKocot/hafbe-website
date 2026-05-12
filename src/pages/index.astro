@@ -3,6 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import ApiPreview from "../components/ApiPreview.astro";
 import ArchitecturePipeline from "../components/ArchitecturePipeline.astro";
 import EndpointList from "../components/EndpointList.astro";
+import WhatsInside from "../components/WhatsInside.astro";
 ---
 
 <Layout>
@@ -59,100 +60,11 @@ import EndpointList from "../components/EndpointList.astro";
   <!-- API Preview -->
   <ApiPreview />
 
-  <!-- Tech Stack -->
-  <section id="tech-stack" class="section-fullscreen py-12 border-t border-border-subtle" aria-labelledby="tech-stack-heading">
-    <div class="mx-auto max-w-[75rem] px-6">
-      <div class="max-w-2xl" data-animate>
-        <h2 id="tech-stack-heading" class="text-3xl sm:text-4xl font-bold tracking-[-0.02em] leading-[1.15]">Built on proven technology</h2>
-      </div>
-
-      <div class="mt-10 flex flex-wrap gap-3" data-animate style="--stagger: 1">
-        {["PostgreSQL 14", "PostgREST", "HAF", "Docker", "PL/pgSQL", "OpenAPI 3.1"].map((tech) => (
-          <span class="rounded-full border border-border-subtle bg-bg-surface px-4 py-2 text-sm text-text-secondary">{tech}</span>
-        ))}
-      </div>
-
-      <div class="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div class="rounded-2xl border border-border-subtle bg-bg-surface p-7" data-animate style="--stagger: 2">
-          <h3 class="text-base font-semibold text-text-primary">SQL-first</h3>
-          <p class="mt-2 text-sm text-text-secondary leading-relaxed">16 REST endpoints generated directly from PL/pgSQL functions. Write SQL, get a production API — no ORM, no middleware, no translation layer.</p>
-        </div>
-        <div class="rounded-2xl border border-border-subtle bg-bg-surface p-7" data-animate style="--stagger: 3">
-          <h3 class="text-base font-semibold text-text-primary">Smart Caching</h3>
-          <p class="mt-2 text-sm text-text-secondary leading-relaxed">Historical data cached for up to 1 year for instant retrieval. Live blockchain data refreshed every 2 seconds — under 100ms response times for cached queries.</p>
-        </div>
-        <div class="rounded-2xl border border-border-subtle bg-bg-surface p-7" data-animate style="--stagger: 4">
-          <h3 class="text-base font-semibold text-text-primary">Fork Resistant</h3>
-          <p class="mt-2 text-sm text-text-secondary leading-relaxed">HAF automatically detects and handles blockchain forks. Automatic rollback on chain reorganization — no data corruption, no manual intervention required.</p>
-        </div>
-        <div class="rounded-2xl border border-border-subtle bg-bg-surface p-7" data-animate style="--stagger: 5">
-          <div class="mb-3">
-            <svg class="w-6 h-6 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-              <polyline points="14 2 14 8 20 8" />
-              <line x1="16" y1="13" x2="8" y2="13" />
-              <line x1="16" y1="17" x2="8" y2="17" />
-              <polyline points="10 9 9 9 8 9" />
-            </svg>
-          </div>
-          <h3 class="text-base font-semibold text-text-primary">OpenAPI 3.1</h3>
-          <p class="mt-2 text-sm text-text-secondary leading-relaxed">Machine-readable API specification. Import directly into Postman, Swagger UI, or any OpenAPI-compatible tool for instant integration.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+  <!-- What's Inside -->
+  <WhatsInside />
 
   <!-- Architecture Pipeline -->
   <ArchitecturePipeline />
-
-  <!-- CTA -->
-  <section class="section-fullscreen py-12 border-t border-border-subtle relative overflow-hidden" aria-labelledby="cta-heading">
-    <div class="absolute inset-0 bg-gradient-to-b from-accent/[0.03] to-transparent pointer-events-none"></div>
-    <div class="mx-auto max-w-[75rem] px-6 relative">
-      <div class="max-w-2xl" data-animate>
-        <h2 id="cta-heading" class="text-3xl sm:text-4xl font-bold tracking-[-0.02em] leading-[1.15]">Start Building Today</h2>
-        <p class="mt-4 text-text-secondary leading-relaxed">Access the full Hive blockchain through a clean REST API.</p>
-        <div class="mt-5 flex flex-wrap gap-3">
-          <span class="rounded-full border border-border-subtle bg-bg-surface px-4 py-1.5 text-sm text-text-secondary">16 REST endpoints</span>
-          <span class="rounded-full border border-border-subtle bg-bg-surface px-4 py-1.5 text-sm text-text-secondary">No authentication</span>
-          <span class="rounded-full border border-border-subtle bg-bg-surface px-4 py-1.5 text-sm text-text-secondary">OpenAPI 3.1 spec</span>
-        </div>
-      </div>
-
-      <div class="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-3xl">
-        <a
-          href="https://api.hive.blog/hafbe-api/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="rounded-2xl border border-border-subtle bg-bg-surface p-7 hover:border-accent/40 transition-colors"
-          data-animate style="--stagger: 1"
-        >
-          <h3 class="text-base font-semibold text-text-primary">API Documentation</h3>
-          <p class="mt-2 text-sm text-text-secondary leading-relaxed">Complete OpenAPI 3.1 specification with 16 endpoints. Witness rankings, account details, block search, transaction statistics, and more.</p>
-        </a>
-        <a
-          href="https://explore.openhive.network/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="rounded-2xl border border-border-subtle bg-bg-surface p-7 hover:border-accent/40 transition-colors"
-          data-animate style="--stagger: 2"
-        >
-          <h3 class="text-base font-semibold text-text-primary">Block Explorer</h3>
-          <p class="mt-2 text-sm text-text-secondary leading-relaxed">Live blockchain explorer powered by HAF BE. Browse witnesses, accounts, and operations with data refreshed every 2 seconds.</p>
-        </a>
-        <a
-          href="https://gitlab.syncad.com/hive/haf_block_explorer"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="rounded-2xl border border-border-subtle bg-bg-surface p-7 hover:border-accent/40 transition-colors"
-          data-animate style="--stagger: 3"
-        >
-          <h3 class="text-base font-semibold text-text-primary">Source Code</h3>
-          <p class="mt-2 text-sm text-text-secondary leading-relaxed">Open source on GitLab. Built with PostgreSQL, PL/pgSQL, and PostgREST. Contribute, fork, or deploy your own instance.</p>
-        </a>
-      </div>
-    </div>
-  </section>
 
 </Layout>
 
