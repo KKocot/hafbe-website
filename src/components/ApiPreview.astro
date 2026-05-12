@@ -41,16 +41,18 @@
           >Response</label>
         </div>
 
-        <!-- Request panel -->
-        <div class="api-panel-request p-6 font-mono text-sm leading-relaxed">
-          <code>
-            <span class="text-text-tertiary">curl</span> <span class="text-accent">"https://api.hive.blog/hafbe-api/accounts/blocktrades"</span>
-          </code>
-        </div>
+        <!-- Panels grid: both panels overlap in same cell, taller one sets height -->
+        <div class="api-panels-grid">
+          <!-- Request panel -->
+          <div class="api-panel-request p-6 font-mono text-sm leading-relaxed">
+            <code>
+              <span class="text-text-tertiary">curl</span> <span class="text-accent">"https://api.hive.blog/hafbe-api/accounts/blocktrades"</span>
+            </code>
+          </div>
 
-        <!-- Response panel (default) -->
-        <div class="api-panel-response p-6 font-mono text-sm leading-relaxed">
-          <pre><code><span class="tp">{</span>
+          <!-- Response panel (default) -->
+          <div class="api-panel-response p-6 font-mono text-sm leading-relaxed">
+            <pre><code><span class="tp">{</span>
   <span class="tk">"id"</span><span class="tp">:</span> <span class="tn">440</span><span class="tp">,</span>
   <span class="tk">"name"</span><span class="tp">:</span> <span class="ts">"blocktrades"</span><span class="tp">,</span>
   <span class="tk">"can_vote"</span><span class="tp">:</span> <span class="tb">true</span><span class="tp">,</span>
@@ -60,6 +62,7 @@
   <span class="tk">"witnesses_voted_for"</span><span class="tp">:</span> <span class="tn">9</span><span class="tp">,</span>
   <span class="tk">"is_witness"</span><span class="tp">:</span> <span class="tb">true</span>
 <span class="tp">}</span></code></pre>
+          </div>
         </div>
       </div>
 
@@ -72,9 +75,27 @@
     background: #111111;
   }
 
+  /* Grid overlay: both panels in the same cell, taller one defines height */
+  .api-panels-grid {
+    display: grid;
+  }
+  .api-panels-grid > .api-panel-request,
+  .api-panels-grid > .api-panel-response {
+    grid-area: 1 / 1;
+    transition: opacity 150ms ease;
+  }
+
   /* Default state: Response visible, Request hidden */
-  .api-panel-request { display: none; }
-  .api-panel-response { display: block; }
+  .api-panel-request {
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+  }
+  .api-panel-response {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+  }
 
   /* Tab label active state: Response (default) */
   .api-tab-label--response {
@@ -84,8 +105,16 @@
   }
 
   /* When Request radio is checked */
-  #api-tab-request:checked ~ .api-panel-request { display: block; }
-  #api-tab-request:checked ~ .api-panel-response { display: none; }
+  #api-tab-request:checked ~ .api-panels-grid .api-panel-request {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+  }
+  #api-tab-request:checked ~ .api-panels-grid .api-panel-response {
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+  }
   #api-tab-request:checked ~ [role="tablist"] .api-tab-label--request {
     color: var(--color-text-primary);
     border-bottom: 1px solid var(--color-accent);
@@ -98,8 +127,16 @@
   }
 
   /* When Response radio is checked (explicit) */
-  #api-tab-response:checked ~ .api-panel-response { display: block; }
-  #api-tab-response:checked ~ .api-panel-request { display: none; }
+  #api-tab-response:checked ~ .api-panels-grid .api-panel-response {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+  }
+  #api-tab-response:checked ~ .api-panels-grid .api-panel-request {
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+  }
   #api-tab-response:checked ~ [role="tablist"] .api-tab-label--response {
     color: var(--color-text-primary);
     border-bottom: 1px solid var(--color-accent);
