@@ -8,51 +8,53 @@
         <p class="mt-4 text-text-secondary leading-relaxed">No authentication required. Just HTTP GET.</p>
       </div>
 
-      <!-- Right: faux terminal -->
-      <div
-        role="region"
-        aria-label="API example"
-        class="api-terminal rounded-2xl border border-border-subtle overflow-hidden shadow-[0_0_80px_rgba(34,197,94,0.06)]"
-        data-animate
-        style="--stagger: 1"
-      >
-        <!-- Title bar -->
-        <div class="flex items-center gap-2 px-4 py-3 border-b border-border-subtle">
-          <span class="h-3 w-3 rounded-full" style="background: #FF5F57" aria-hidden="true"></span>
-          <span class="h-3 w-3 rounded-full" style="background: #FEBC2E" aria-hidden="true"></span>
-          <span class="h-3 w-3 rounded-full" style="background: #28C840" aria-hidden="true"></span>
+      <!-- Right: faux terminal with endpoint switcher -->
+      <div data-animate style="--stagger: 1">
+
+        <!-- Endpoint switcher (CSS-only radio) -->
+        <input type="radio" name="endpoint-tab" id="ep-account" class="sr-only ep-input" checked />
+        <input type="radio" name="endpoint-tab" id="ep-witnesses" class="sr-only ep-input" />
+        <input type="radio" name="endpoint-tab" id="ep-block" class="sr-only ep-input" />
+
+        <!-- Endpoint tab labels -->
+        <div role="tablist" class="ep-tablist flex gap-1 mb-0" aria-label="API endpoint examples">
+          <label for="ep-account" role="tab" class="ep-tab ep-tab--account px-4 py-2 text-xs font-medium rounded-t-lg cursor-pointer transition-colors">Account</label>
+          <label for="ep-witnesses" role="tab" class="ep-tab ep-tab--witnesses px-4 py-2 text-xs font-medium rounded-t-lg cursor-pointer transition-colors">Witnesses</label>
+          <label for="ep-block" role="tab" class="ep-tab ep-tab--block px-4 py-2 text-xs font-medium rounded-t-lg cursor-pointer transition-colors">Block Info</label>
         </div>
 
-        <!-- Hidden radio inputs (siblings of panels for CSS ~ selector) -->
-        <input type="radio" name="api-tab" id="api-tab-request" class="sr-only api-tab-input" />
-        <input type="radio" name="api-tab" id="api-tab-response" class="sr-only api-tab-input" checked />
-
-        <!-- Tab labels -->
-        <div role="tablist" class="flex border-b border-border-subtle">
-          <label
-            for="api-tab-request"
-            role="tab"
-            class="api-tab-label api-tab-label--request px-4 py-2.5 text-xs font-medium text-text-tertiary cursor-pointer transition-colors hover:text-text-secondary"
-          >Request</label>
-          <label
-            for="api-tab-response"
-            role="tab"
-            class="api-tab-label api-tab-label--response px-4 py-2.5 text-xs font-medium text-text-tertiary cursor-pointer transition-colors hover:text-text-secondary"
-          >Response</label>
-        </div>
-
-        <!-- Panels grid: both panels overlap in same cell, taller one sets height -->
-        <div class="api-panels-grid">
-          <!-- Request panel -->
-          <div class="api-panel-request p-6 font-mono text-sm leading-relaxed">
-            <code>
-              <span class="text-text-tertiary">curl</span> <span class="text-accent">"https://api.hive.blog/hafbe-api/accounts/blocktrades"</span>
-            </code>
+        <!-- Terminal container -->
+        <div
+          role="region"
+          aria-label="API example"
+          class="api-terminal rounded-b-2xl rounded-tr-2xl border border-border-subtle overflow-hidden shadow-[0_0_80px_rgba(34,197,94,0.06)]"
+        >
+          <!-- Title bar -->
+          <div class="flex items-center gap-2 px-4 py-3 border-b border-border-subtle">
+            <span class="h-3 w-3 rounded-full" style="background: #FF5F57" aria-hidden="true"></span>
+            <span class="h-3 w-3 rounded-full" style="background: #FEBC2E" aria-hidden="true"></span>
+            <span class="h-3 w-3 rounded-full" style="background: #28C840" aria-hidden="true"></span>
           </div>
 
-          <!-- Response panel (default) -->
-          <div class="api-panel-response p-6 font-mono text-sm leading-relaxed">
-            <pre><code><span class="tp">{</span>
+          <!-- Endpoint panels (overlapping grid) -->
+          <div class="ep-panels">
+
+            <!-- Account panel -->
+            <div class="ep-panel ep-panel--account">
+              <input type="radio" name="inner-tab-account" id="inner-account-req" class="sr-only inner-tab-input" />
+              <input type="radio" name="inner-tab-account" id="inner-account-res" class="sr-only inner-tab-input" checked />
+              <div role="tablist" class="flex border-b border-border-subtle">
+                <label for="inner-account-req" role="tab" class="inner-label inner-label-req px-4 py-2.5 text-xs font-medium text-text-tertiary cursor-pointer transition-colors hover:text-text-secondary">Request</label>
+                <label for="inner-account-res" role="tab" class="inner-label inner-label-res px-4 py-2.5 text-xs font-medium text-text-tertiary cursor-pointer transition-colors hover:text-text-secondary">Response</label>
+              </div>
+              <div class="inner-panels">
+                <div class="inner-panel inner-panel-req p-6 font-mono text-sm leading-relaxed">
+                  <code>
+                    <span class="text-text-tertiary">curl</span> <span class="text-accent">"https://api.hive.blog/hafbe-api/accounts/blocktrades"</span>
+                  </code>
+                </div>
+                <div class="inner-panel inner-panel-res p-6 font-mono text-sm leading-relaxed">
+                  <pre><code><span class="tp">{</span>
   <span class="tk">"id"</span><span class="tp">:</span> <span class="tn">440</span><span class="tp">,</span>
   <span class="tk">"name"</span><span class="tp">:</span> <span class="ts">"blocktrades"</span><span class="tp">,</span>
   <span class="tk">"can_vote"</span><span class="tp">:</span> <span class="tb">true</span><span class="tp">,</span>
@@ -62,8 +64,87 @@
   <span class="tk">"witnesses_voted_for"</span><span class="tp">:</span> <span class="tn">9</span><span class="tp">,</span>
   <span class="tk">"is_witness"</span><span class="tp">:</span> <span class="tb">true</span>
 <span class="tp">}</span></code></pre>
+                </div>
+              </div>
+            </div>
+
+            <!-- Witnesses panel -->
+            <div class="ep-panel ep-panel--witnesses">
+              <input type="radio" name="inner-tab-witnesses" id="inner-witnesses-req" class="sr-only inner-tab-input" />
+              <input type="radio" name="inner-tab-witnesses" id="inner-witnesses-res" class="sr-only inner-tab-input" checked />
+              <div role="tablist" class="flex border-b border-border-subtle">
+                <label for="inner-witnesses-req" role="tab" class="inner-label inner-label-req px-4 py-2.5 text-xs font-medium text-text-tertiary cursor-pointer transition-colors hover:text-text-secondary">Request</label>
+                <label for="inner-witnesses-res" role="tab" class="inner-label inner-label-res px-4 py-2.5 text-xs font-medium text-text-tertiary cursor-pointer transition-colors hover:text-text-secondary">Response</label>
+              </div>
+              <div class="inner-panels">
+                <div class="inner-panel inner-panel-req p-6 font-mono text-sm leading-relaxed">
+                  <code>
+                    <span class="text-text-tertiary">curl</span> <span class="text-accent">"https://api.hive.blog/hafbe-api/witnesses?limit=3&amp;sort=votes&amp;direction=desc"</span>
+                  </code>
+                </div>
+                <div class="inner-panel inner-panel-res p-6 font-mono text-sm leading-relaxed">
+                  <pre><code><span class="tp">[</span>
+  <span class="tp">{</span>
+    <span class="tk">"witness"</span><span class="tp">:</span> <span class="ts">"blocktrades"</span><span class="tp">,</span>
+    <span class="tk">"rank"</span><span class="tp">:</span> <span class="tn">1</span><span class="tp">,</span>
+    <span class="tk">"votes"</span><span class="tp">:</span> <span class="ts">"128736512847"</span><span class="tp">,</span>
+    <span class="tk">"voters_num"</span><span class="tp">:</span> <span class="tn">1043</span><span class="tp">,</span>
+    <span class="tk">"is_active"</span><span class="tp">:</span> <span class="tb">true</span>
+  <span class="tp">},</span>
+  <span class="tp">{</span>
+    <span class="tk">"witness"</span><span class="tp">:</span> <span class="ts">"gtg"</span><span class="tp">,</span>
+    <span class="tk">"rank"</span><span class="tp">:</span> <span class="tn">2</span><span class="tp">,</span>
+    <span class="tk">"votes"</span><span class="tp">:</span> <span class="ts">"125891034562"</span><span class="tp">,</span>
+    <span class="tk">"voters_num"</span><span class="tp">:</span> <span class="tn">987</span><span class="tp">,</span>
+    <span class="tk">"is_active"</span><span class="tp">:</span> <span class="tb">true</span>
+  <span class="tp">},</span>
+  <span class="tp">{</span>
+    <span class="tk">"witness"</span><span class="tp">:</span> <span class="ts">"good-karma"</span><span class="tp">,</span>
+    <span class="tk">"rank"</span><span class="tp">:</span> <span class="tn">3</span><span class="tp">,</span>
+    <span class="tk">"votes"</span><span class="tp">:</span> <span class="ts">"119234567890"</span><span class="tp">,</span>
+    <span class="tk">"voters_num"</span><span class="tp">:</span> <span class="tn">876</span><span class="tp">,</span>
+    <span class="tk">"is_active"</span><span class="tp">:</span> <span class="tb">true</span>
+  <span class="tp">}</span>
+<span class="tp">]</span></code></pre>
+                </div>
+              </div>
+            </div>
+
+            <!-- Block Info panel -->
+            <div class="ep-panel ep-panel--block">
+              <input type="radio" name="inner-tab-block" id="inner-block-req" class="sr-only inner-tab-input" />
+              <input type="radio" name="inner-tab-block" id="inner-block-res" class="sr-only inner-tab-input" checked />
+              <div role="tablist" class="flex border-b border-border-subtle">
+                <label for="inner-block-req" role="tab" class="inner-label inner-label-req px-4 py-2.5 text-xs font-medium text-text-tertiary cursor-pointer transition-colors hover:text-text-secondary">Request</label>
+                <label for="inner-block-res" role="tab" class="inner-label inner-label-res px-4 py-2.5 text-xs font-medium text-text-tertiary cursor-pointer transition-colors hover:text-text-secondary">Response</label>
+              </div>
+              <div class="inner-panels">
+                <div class="inner-panel inner-panel-req p-6 font-mono text-sm leading-relaxed">
+                  <code>
+                    <span class="text-text-tertiary">curl</span> <span class="text-accent">"https://api.hive.blog/hafbe-api/last-synced-block"</span>
+                  </code>
+                </div>
+                <div class="inner-panel inner-panel-res p-6 font-mono text-sm leading-relaxed">
+                  <pre><code><span class="tp">{</span>
+  <span class="tk">"last_synced_block"</span><span class="tp">:</span> <span class="tn">95123456</span>
+<span class="tp">}</span></code></pre>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
+
+        <!-- Footer link -->
+        <p class="mt-4 text-sm text-text-tertiary">
+          16 endpoints available —
+          <a
+            href="https://api.hive.blog/hafbe-api/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-accent hover:underline"
+          >See full API docs</a>
+        </p>
       </div>
 
     </div>
@@ -75,76 +156,143 @@
     background: #111111;
   }
 
-  /* Grid overlay: both panels in the same cell, taller one defines height */
-  .api-panels-grid {
+  /* ── Endpoint tabs (top-level switcher) ── */
+  .ep-tab {
+    color: var(--color-text-tertiary);
+    background: transparent;
+    border: 1px solid transparent;
+    border-bottom: none;
+    margin-bottom: -1px;
+    position: relative;
+    z-index: 1;
+  }
+  .ep-tab:hover {
+    color: var(--color-text-secondary);
+  }
+
+  /* Default active state: Account */
+  .ep-tab--account {
+    color: var(--color-text-primary);
+    background: #111111;
+    border-color: var(--color-border-subtle);
+  }
+  .ep-tab--witnesses,
+  .ep-tab--block {
+    color: var(--color-text-tertiary);
+    background: transparent;
+    border-color: transparent;
+  }
+
+  /* Endpoint panels: overlapping grid */
+  .ep-panels {
     display: grid;
   }
-  .api-panels-grid > .api-panel-request,
-  .api-panels-grid > .api-panel-response {
+  .ep-panels > .ep-panel {
     grid-area: 1 / 1;
     transition: opacity 150ms ease;
   }
 
-  /* Default state: Response visible, Request hidden */
-  .api-panel-request {
-    visibility: hidden;
-    opacity: 0;
-    pointer-events: none;
-  }
-  .api-panel-response {
-    visibility: visible;
-    opacity: 1;
-    pointer-events: auto;
-  }
+  /* Default: Account visible, others hidden */
+  .ep-panel--account { visibility: visible; opacity: 1; pointer-events: auto; }
+  .ep-panel--witnesses,
+  .ep-panel--block { visibility: hidden; opacity: 0; pointer-events: none; }
 
-  /* Tab label active state: Response (default) */
-  .api-tab-label--response {
+  /* Witnesses selected */
+  #ep-witnesses:checked ~ .ep-tablist .ep-tab--witnesses {
     color: var(--color-text-primary);
-    border-bottom: 1px solid var(--color-accent);
-    margin-bottom: -1px;
+    background: #111111;
+    border-color: var(--color-border-subtle);
   }
-
-  /* When Request radio is checked */
-  #api-tab-request:checked ~ .api-panels-grid .api-panel-request {
-    visibility: visible;
-    opacity: 1;
-    pointer-events: auto;
-  }
-  #api-tab-request:checked ~ .api-panels-grid .api-panel-response {
-    visibility: hidden;
-    opacity: 0;
-    pointer-events: none;
-  }
-  #api-tab-request:checked ~ [role="tablist"] .api-tab-label--request {
-    color: var(--color-text-primary);
-    border-bottom: 1px solid var(--color-accent);
-    margin-bottom: -1px;
-  }
-  #api-tab-request:checked ~ [role="tablist"] .api-tab-label--response {
+  #ep-witnesses:checked ~ .ep-tablist .ep-tab--account,
+  #ep-witnesses:checked ~ .ep-tablist .ep-tab--block {
     color: var(--color-text-tertiary);
-    border-bottom: none;
-    margin-bottom: 0;
+    background: transparent;
+    border-color: transparent;
+  }
+  #ep-witnesses:checked ~ .api-terminal .ep-panel--witnesses { visibility: visible; opacity: 1; pointer-events: auto; }
+  #ep-witnesses:checked ~ .api-terminal .ep-panel--account,
+  #ep-witnesses:checked ~ .api-terminal .ep-panel--block { visibility: hidden; opacity: 0; pointer-events: none; }
+
+  /* Block Info selected */
+  #ep-block:checked ~ .ep-tablist .ep-tab--block {
+    color: var(--color-text-primary);
+    background: #111111;
+    border-color: var(--color-border-subtle);
+  }
+  #ep-block:checked ~ .ep-tablist .ep-tab--account,
+  #ep-block:checked ~ .ep-tablist .ep-tab--witnesses {
+    color: var(--color-text-tertiary);
+    background: transparent;
+    border-color: transparent;
+  }
+  #ep-block:checked ~ .api-terminal .ep-panel--block { visibility: visible; opacity: 1; pointer-events: auto; }
+  #ep-block:checked ~ .api-terminal .ep-panel--account,
+  #ep-block:checked ~ .api-terminal .ep-panel--witnesses { visibility: hidden; opacity: 0; pointer-events: none; }
+
+  /* Account selected (explicit — overrides defaults when other was previously selected) */
+  #ep-account:checked ~ .ep-tablist .ep-tab--account {
+    color: var(--color-text-primary);
+    background: #111111;
+    border-color: var(--color-border-subtle);
+  }
+  #ep-account:checked ~ .ep-tablist .ep-tab--witnesses,
+  #ep-account:checked ~ .ep-tablist .ep-tab--block {
+    color: var(--color-text-tertiary);
+    background: transparent;
+    border-color: transparent;
+  }
+  #ep-account:checked ~ .api-terminal .ep-panel--account { visibility: visible; opacity: 1; pointer-events: auto; }
+  #ep-account:checked ~ .api-terminal .ep-panel--witnesses,
+  #ep-account:checked ~ .api-terminal .ep-panel--block { visibility: hidden; opacity: 0; pointer-events: none; }
+
+  /* ── Inner Request/Response tabs (per endpoint) ── */
+  .inner-panels {
+    display: grid;
+  }
+  .inner-panels > .inner-panel {
+    grid-area: 1 / 1;
+    transition: opacity 150ms ease;
   }
 
-  /* When Response radio is checked (explicit) */
-  #api-tab-response:checked ~ .api-panels-grid .api-panel-response {
-    visibility: visible;
-    opacity: 1;
-    pointer-events: auto;
-  }
-  #api-tab-response:checked ~ .api-panels-grid .api-panel-request {
-    visibility: hidden;
-    opacity: 0;
-    pointer-events: none;
-  }
-  #api-tab-response:checked ~ [role="tablist"] .api-tab-label--response {
+  /* Default: Response visible, Request hidden */
+  .inner-panel-req { visibility: hidden; opacity: 0; pointer-events: none; }
+  .inner-panel-res { visibility: visible; opacity: 1; pointer-events: auto; }
+
+  /* Default label state: Response active */
+  .inner-label-res {
     color: var(--color-text-primary);
     border-bottom: 1px solid var(--color-accent);
     margin-bottom: -1px;
   }
-  #api-tab-response:checked ~ [role="tablist"] .api-tab-label--request {
-    color: var(--color-text-tertiary);
-    border-bottom: none;
-    margin-bottom: 0;
-  }
+
+  /* When Request radio checked — generic pattern for all inner tabs */
+  #inner-account-req:checked ~ [role="tablist"] .inner-label-req { color: var(--color-text-primary); border-bottom: 1px solid var(--color-accent); margin-bottom: -1px; }
+  #inner-account-req:checked ~ [role="tablist"] .inner-label-res { color: var(--color-text-tertiary); border-bottom: none; margin-bottom: 0; }
+  #inner-account-req:checked ~ .inner-panels .inner-panel-req { visibility: visible; opacity: 1; pointer-events: auto; }
+  #inner-account-req:checked ~ .inner-panels .inner-panel-res { visibility: hidden; opacity: 0; pointer-events: none; }
+
+  #inner-account-res:checked ~ [role="tablist"] .inner-label-res { color: var(--color-text-primary); border-bottom: 1px solid var(--color-accent); margin-bottom: -1px; }
+  #inner-account-res:checked ~ [role="tablist"] .inner-label-req { color: var(--color-text-tertiary); border-bottom: none; margin-bottom: 0; }
+  #inner-account-res:checked ~ .inner-panels .inner-panel-res { visibility: visible; opacity: 1; pointer-events: auto; }
+  #inner-account-res:checked ~ .inner-panels .inner-panel-req { visibility: hidden; opacity: 0; pointer-events: none; }
+
+  #inner-witnesses-req:checked ~ [role="tablist"] .inner-label-req { color: var(--color-text-primary); border-bottom: 1px solid var(--color-accent); margin-bottom: -1px; }
+  #inner-witnesses-req:checked ~ [role="tablist"] .inner-label-res { color: var(--color-text-tertiary); border-bottom: none; margin-bottom: 0; }
+  #inner-witnesses-req:checked ~ .inner-panels .inner-panel-req { visibility: visible; opacity: 1; pointer-events: auto; }
+  #inner-witnesses-req:checked ~ .inner-panels .inner-panel-res { visibility: hidden; opacity: 0; pointer-events: none; }
+
+  #inner-witnesses-res:checked ~ [role="tablist"] .inner-label-res { color: var(--color-text-primary); border-bottom: 1px solid var(--color-accent); margin-bottom: -1px; }
+  #inner-witnesses-res:checked ~ [role="tablist"] .inner-label-req { color: var(--color-text-tertiary); border-bottom: none; margin-bottom: 0; }
+  #inner-witnesses-res:checked ~ .inner-panels .inner-panel-res { visibility: visible; opacity: 1; pointer-events: auto; }
+  #inner-witnesses-res:checked ~ .inner-panels .inner-panel-req { visibility: hidden; opacity: 0; pointer-events: none; }
+
+  #inner-block-req:checked ~ [role="tablist"] .inner-label-req { color: var(--color-text-primary); border-bottom: 1px solid var(--color-accent); margin-bottom: -1px; }
+  #inner-block-req:checked ~ [role="tablist"] .inner-label-res { color: var(--color-text-tertiary); border-bottom: none; margin-bottom: 0; }
+  #inner-block-req:checked ~ .inner-panels .inner-panel-req { visibility: visible; opacity: 1; pointer-events: auto; }
+  #inner-block-req:checked ~ .inner-panels .inner-panel-res { visibility: hidden; opacity: 0; pointer-events: none; }
+
+  #inner-block-res:checked ~ [role="tablist"] .inner-label-res { color: var(--color-text-primary); border-bottom: 1px solid var(--color-accent); margin-bottom: -1px; }
+  #inner-block-res:checked ~ [role="tablist"] .inner-label-req { color: var(--color-text-tertiary); border-bottom: none; margin-bottom: 0; }
+  #inner-block-res:checked ~ .inner-panels .inner-panel-res { visibility: visible; opacity: 1; pointer-events: auto; }
+  #inner-block-res:checked ~ .inner-panels .inner-panel-req { visibility: hidden; opacity: 0; pointer-events: none; }
 </style>
