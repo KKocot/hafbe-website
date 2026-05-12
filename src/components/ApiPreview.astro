@@ -1,0 +1,113 @@
+<section id="api-preview" class="py-24 md:py-32 border-t border-border-subtle" aria-labelledby="api-preview-heading">
+  <div class="mx-auto max-w-[75rem] px-6">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+
+      <!-- Left: heading + subtitle -->
+      <div data-animate>
+        <h2 id="api-preview-heading" class="text-3xl sm:text-4xl font-bold tracking-[-0.02em] leading-[1.15]">See it in action</h2>
+        <p class="mt-4 text-text-secondary leading-relaxed">No authentication required. Just HTTP GET.</p>
+      </div>
+
+      <!-- Right: faux terminal -->
+      <div
+        role="region"
+        aria-label="API example"
+        class="api-terminal rounded-2xl border border-border-subtle overflow-hidden shadow-[0_0_80px_rgba(34,197,94,0.06)]"
+        data-animate
+        style="--stagger: 1"
+      >
+        <!-- Title bar -->
+        <div class="flex items-center gap-2 px-4 py-3 border-b border-border-subtle">
+          <span class="h-3 w-3 rounded-full" style="background: #FF5F57" aria-hidden="true"></span>
+          <span class="h-3 w-3 rounded-full" style="background: #FEBC2E" aria-hidden="true"></span>
+          <span class="h-3 w-3 rounded-full" style="background: #28C840" aria-hidden="true"></span>
+        </div>
+
+        <!-- Hidden radio inputs (siblings of panels for CSS ~ selector) -->
+        <input type="radio" name="api-tab" id="api-tab-request" class="sr-only api-tab-input" />
+        <input type="radio" name="api-tab" id="api-tab-response" class="sr-only api-tab-input" checked />
+
+        <!-- Tab labels -->
+        <div role="tablist" class="flex border-b border-border-subtle">
+          <label
+            for="api-tab-request"
+            role="tab"
+            class="api-tab-label api-tab-label--request px-4 py-2.5 text-xs font-medium text-text-tertiary cursor-pointer transition-colors hover:text-text-secondary"
+          >Request</label>
+          <label
+            for="api-tab-response"
+            role="tab"
+            class="api-tab-label api-tab-label--response px-4 py-2.5 text-xs font-medium text-text-tertiary cursor-pointer transition-colors hover:text-text-secondary"
+          >Response</label>
+        </div>
+
+        <!-- Request panel -->
+        <div class="api-panel-request p-6 font-mono text-sm leading-relaxed">
+          <code>
+            <span class="text-text-tertiary">curl</span> <span class="text-accent">"https://api.hive.blog/hafbe-api/accounts/blocktrades"</span>
+          </code>
+        </div>
+
+        <!-- Response panel (default) -->
+        <div class="api-panel-response p-6 font-mono text-sm leading-relaxed">
+          <pre><code><span class="tp">{</span>
+  <span class="tk">"id"</span><span class="tp">:</span> <span class="tn">440</span><span class="tp">,</span>
+  <span class="tk">"name"</span><span class="tp">:</span> <span class="ts">"blocktrades"</span><span class="tp">,</span>
+  <span class="tk">"can_vote"</span><span class="tp">:</span> <span class="tb">true</span><span class="tp">,</span>
+  <span class="tk">"reputation"</span><span class="tp">:</span> <span class="tn">69</span><span class="tp">,</span>
+  <span class="tk">"balance"</span><span class="tp">:</span> <span class="tn">29594875</span><span class="tp">,</span>
+  <span class="tk">"vesting_shares"</span><span class="tp">:</span> <span class="ts">"8172549681941451"</span><span class="tp">,</span>
+  <span class="tk">"witnesses_voted_for"</span><span class="tp">:</span> <span class="tn">9</span><span class="tp">,</span>
+  <span class="tk">"is_witness"</span><span class="tp">:</span> <span class="tb">true</span>
+<span class="tp">}</span></code></pre>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style is:global>
+  .api-terminal {
+    background: #111111;
+  }
+
+  /* Default state: Response visible, Request hidden */
+  .api-panel-request { display: none; }
+  .api-panel-response { display: block; }
+
+  /* Tab label active state: Response (default) */
+  .api-tab-label--response {
+    color: var(--color-text-primary);
+    border-bottom: 1px solid var(--color-accent);
+    margin-bottom: -1px;
+  }
+
+  /* When Request radio is checked */
+  #api-tab-request:checked ~ .api-panel-request { display: block; }
+  #api-tab-request:checked ~ .api-panel-response { display: none; }
+  #api-tab-request:checked ~ [role="tablist"] .api-tab-label--request {
+    color: var(--color-text-primary);
+    border-bottom: 1px solid var(--color-accent);
+    margin-bottom: -1px;
+  }
+  #api-tab-request:checked ~ [role="tablist"] .api-tab-label--response {
+    color: var(--color-text-tertiary);
+    border-bottom: none;
+    margin-bottom: 0;
+  }
+
+  /* When Response radio is checked (explicit) */
+  #api-tab-response:checked ~ .api-panel-response { display: block; }
+  #api-tab-response:checked ~ .api-panel-request { display: none; }
+  #api-tab-response:checked ~ [role="tablist"] .api-tab-label--response {
+    color: var(--color-text-primary);
+    border-bottom: 1px solid var(--color-accent);
+    margin-bottom: -1px;
+  }
+  #api-tab-response:checked ~ [role="tablist"] .api-tab-label--request {
+    color: var(--color-text-tertiary);
+    border-bottom: none;
+    margin-bottom: 0;
+  }
+</style>
