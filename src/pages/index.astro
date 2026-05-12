@@ -47,7 +47,7 @@ import ArchitecturePipeline from "../components/ArchitecturePipeline.astro";
           <span class="relative inline-flex h-2.5 w-2.5 rounded-full bg-accent"></span>
         </span>
         <span class="text-sm text-text-secondary">Latest Block:</span>
-        <span id="block-counter" class="text-sm font-mono font-medium text-text-primary">#91,000,000</span>
+        <span id="block-counter" class="text-sm font-mono font-medium text-text-primary">Loading...</span>
       </div>
     </div>
   </section>
@@ -314,11 +314,18 @@ import ArchitecturePipeline from "../components/ArchitecturePipeline.astro";
   // Block counter
   const counter = document.getElementById("block-counter");
   if (counter) {
-    let block = 91000000;
     const fmt = new Intl.NumberFormat("en-US");
-    const update = () => { counter.textContent = "#" + fmt.format(block); };
-    update();
-    setInterval(() => { block++; update(); }, 3000);
+    const display = (n: number) => { counter.textContent = "#" + fmt.format(n); };
+    const fetchBlock = async () => {
+      try {
+        const res = await fetch("https://api.hive.blog/hafbe-api/last-synced-block");
+        if (!res.ok) return;
+        const block = Number(await res.text());
+        if (block > 0) display(block);
+      } catch {}
+    };
+    fetchBlock();
+    setInterval(fetchBlock, 3000);
   }
 
   // Scroll animations
