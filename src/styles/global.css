@@ -19,6 +19,13 @@
   outline-offset: 2px;
 }
 
+.section-fullscreen {
+  min-height: calc(100dvh - 4rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 [data-animate] {
   opacity: 0;
   transform: translateY(1.25rem);

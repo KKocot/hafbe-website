@@ -7,7 +7,7 @@ import ArchitecturePipeline from "../components/ArchitecturePipeline.astro";
 <Layout>
 
   <!-- Hero -->
-  <section class="relative overflow-hidden py-24 md:py-32" data-animate aria-labelledby="hero-heading">
+  <section class="section-fullscreen relative overflow-hidden py-12" data-animate aria-labelledby="hero-heading">
     <!-- Animated background -->
     <div class="hero-bg absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
       <div class="hero-grid absolute inset-0"></div>
@@ -71,7 +71,7 @@ import ArchitecturePipeline from "../components/ArchitecturePipeline.astro";
   </section>
 
   <!-- Features -->
-  <section id="features" class="py-24 md:py-32 border-t border-border-subtle" aria-labelledby="features-heading">
+  <section id="features" class="section-fullscreen py-12 border-t border-border-subtle" aria-labelledby="features-heading">
     <div class="mx-auto max-w-[75rem] px-6">
       <div class="max-w-2xl" data-animate>
         <h2 id="features-heading" class="text-3xl sm:text-4xl font-bold tracking-[-0.02em] leading-[1.15]">Everything you need to explore Hive</h2>
@@ -170,7 +170,7 @@ import ArchitecturePipeline from "../components/ArchitecturePipeline.astro";
   <ApiPreview />
 
   <!-- Tech Stack -->
-  <section id="tech-stack" class="py-24 md:py-32 border-t border-border-subtle" aria-labelledby="tech-stack-heading">
+  <section id="tech-stack" class="section-fullscreen py-12 border-t border-border-subtle" aria-labelledby="tech-stack-heading">
     <div class="mx-auto max-w-[75rem] px-6">
       <div class="max-w-2xl" data-animate>
         <h2 id="tech-stack-heading" class="text-3xl sm:text-4xl font-bold tracking-[-0.02em] leading-[1.15]">Built on proven technology</h2>
@@ -203,7 +203,7 @@ import ArchitecturePipeline from "../components/ArchitecturePipeline.astro";
   <ArchitecturePipeline />
 
   <!-- CTA -->
-  <section class="py-24 md:py-32 border-t border-border-subtle relative overflow-hidden" aria-labelledby="cta-heading">
+  <section class="section-fullscreen py-12 border-t border-border-subtle relative overflow-hidden" aria-labelledby="cta-heading">
     <div class="absolute inset-0 bg-gradient-to-b from-accent/[0.03] to-transparent pointer-events-none"></div>
     <div class="mx-auto max-w-[75rem] px-6 relative">
       <div class="max-w-2xl" data-animate>
@@ -264,7 +264,7 @@ import ArchitecturePipeline from "../components/ArchitecturePipeline.astro";
     (entries) => {
       entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("visible"); observer.unobserve(e.target); } });
     },
-    { threshold: 0.1 }
+    { threshold: 0.15 }
   );
   document.querySelectorAll("[data-animate]").forEach((el) => observer.observe(el));
 </script>
